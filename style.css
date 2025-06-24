@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #0a0a19;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+canvas {
+  display: block;
+}
