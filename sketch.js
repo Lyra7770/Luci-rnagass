@@ -1,65 +1,46 @@
-let trazos = [];
-let trazoActual = [];
-let paleta = [
-  [222, 218, 145], // amarillo suave
-  [191, 186, 176], // gris cálido
-  [166, 136, 99],  // ocre
-  [198, 153, 144], // rosado viejo
-  [144, 178, 126]  // verde apagado
-];
+let luces = [];
+let cantidad = 80;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(238, 227, 202); // fondo cálido claro
-  noCursor();
+  for (let i = 0; i < cantidad; i++) {
+    luces.push(new Luz());
+  }
 }
 
 function draw() {
-  background(238, 227, 202);
-
-  for (let t of trazos) {
-    drawTrazo(t);
-  }
-
-  drawTrazo(trazoActual);
-
-  // cursor visual suave
-  noStroke();
-  fill(50, 50, 50, 60);
-  ellipse(mouseX, mouseY, 20, 20);
-}
-
-function mousePressed() {
-  trazoActual = [];
-}
-
-function mouseDragged() {
-  let c = paleta[int(random(paleta.length))];
-  for (let i = 0; i < 4; i++) {
-    let ox = random(-10, 10);
-    let oy = random(-10, 10);
-    trazoActual.push({ x: mouseX + ox, y: mouseY + oy, c: color(...c, 200) });
+  background(10, 10, 25, 40);
+  for (let l of luces) {
+    l.actualizar();
+    l.mostrar();
   }
 }
 
-function mouseReleased() {
-  if (trazoActual.length > 0) {
-    trazos.push(trazoActual);
-    trazoActual = [];
+class Luz {
+  constructor() {
+    this.x = random(width);
+    this.y = random(height);
+    this.dx = random(-0.5, 0.5);
+    this.dy = random(-0.5, 0.5);
+    this.c = color(random(100, 255), random(100, 255), random(200, 255), 150);
   }
-}
 
-function drawTrazo(trazo) {
-  noStroke();
-  for (let p of trazo) {
-    fill(p.c);
-    ellipse(p.x, p.y, random(8, 14), random(8, 14));
+  actualizar() {
+    this.x += this.dx + random(-0.3, 0.3);
+    this.y += this.dy + random(-0.3, 0.3);
+
+    if (this.x < 0 || this.x > width) this.dx *= -1;
+    if (this.y < 0 || this.y > height) this.dy *= -1;
   }
-}
 
-function keyPressed() {
-  if (key === 'z' || key === 'Z') {
-    trazos.pop();
+  mostrar() {
+    let distancia = dist(this.x, this.y, mouseX, mouseY);
+    let tam = map(distancia, 0, 300, 12, 3);
+    let brillo = map(distancia, 0, 300, 255, 50);
+
+    fill(red(this.c), green(this.c), blue(this.c), brillo);
+    noStroke();
+    ellipse(this.x, this.y, tam, tam);
   }
 }
 
