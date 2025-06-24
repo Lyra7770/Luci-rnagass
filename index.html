@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paisajes Sensibles</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: linear-gradient(120deg, #F2E8E4, #F2D888, #FADADD, #D98C5F);
+      background-size: 400% 400%;
+      animation: gradient 20s ease infinite;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    @keyframes gradient {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    canvas {
+      display: block;
+    }
+
+    #frase {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(50, 50, 50, 0.5);
+      font-size: 2em;
+      text-align: center;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="frase">A veces, la luz vaga sin rumbo, tocando lo que se desvaneció.</div>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>
