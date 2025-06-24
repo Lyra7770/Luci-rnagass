@@ -9,11 +9,18 @@ function setup() {
 }
 
 function draw() {
-  background(10, 10, 25, 40);
+  escenaLuciernagas();
+}
+
+function escenaLuciernagas() {
+  background(10, 10, 25, 40); // estela sutil
+
   for (let l of luces) {
     l.actualizar();
     l.mostrar();
   }
+
+  mostrarTextoPoetico();
 }
 
 class Luz {
@@ -42,6 +49,13 @@ class Luz {
     noStroke();
     ellipse(this.x, this.y, tam, tam);
   }
+}
+
+function mostrarTextoPoetico() {
+  fill(255, 100);
+  textAlign(CENTER);
+  textSize(16);
+  text("A veces, la luz vaga sin rumbo, siguiendo rastros del tiempo.", width / 2, height - 40);
 }
 
 function windowResized() {
