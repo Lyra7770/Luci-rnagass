@@ -52,10 +52,14 @@ class Luz {
 }
 
 function mostrarTextoPoetico() {
+  let margen = 40;
+  let anchoTexto = constrain(width * 0.8, 200, 600); // ajusta ancho a pantalla
   fill(255, 100);
   textAlign(CENTER);
   textSize(16);
-  text("A veces, la luz vaga sin rumbo, siguiendo rastros del tiempo.", width / 2, height - 40);
+  textWrap(WORD);
+  text("A veces, la luz vaga sin rumbo, siguiendo rastros del tiempo.",
+       width / 2 - anchoTexto / 2, height - 80, anchoTexto);
 }
 
 function windowResized() {
